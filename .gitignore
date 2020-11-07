@@ -1,0 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# IDE's
+.idea/
+
+# Django stuff:
+*.log
+db.sqlite3

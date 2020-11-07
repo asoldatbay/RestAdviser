@@ -1,0 +1,7 @@
+Django
+django-filter
+django-tinymce
+djangorestframework
+djangorestframework-jwt
+gunicorn
+psycopg2-binary

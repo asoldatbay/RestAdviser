@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  backend:
+    image: backend:latest
+    build: .
+    ports:
+      - 8000:8000
+    links:
+      - postgres
+    depends_on:
+      - postgres
+      - migration
+  postgres:
+    image: postgres:10.3
+    container_name: postgres-1
+    hostname: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    # volumes:
+    #   - ./postgres-data:/var/lib/postgresql:rw
+  migration:
+    image: backend:latest
+    command: ["./wait.sh", "postgres:5432", "--", "./manage.py", "migrate"]
+    links:
+      - postgres
+    depends_on:
+      - postgres
